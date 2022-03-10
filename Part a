@@ -1,0 +1,43 @@
+# Homework 2
+# Linh Pham - ID# 2027194
+# This program read a data from input file, parse the dates to find the one in the correct format,
+# and output in m/d/yyyy format.
+
+from datetime import datetime
+from datetime import date
+time_format = "%B %d, %Y"   # initializing format
+
+# Create the list for months
+months = ['January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December']
+
+# create loop until input not equal to -1
+while True:
+    get_date = input()
+    if get_date == "-1":
+        break
+
+# using try-except to check for truth value
+    try:
+        # checking if time_format matches the date
+        format_matching = bool(datetime.strptime(get_date, time_format))
+    except ValueError:
+        format_matching = False
+
+    # using find() method to parse the string and extract exact date
+    if format_matching:
+        for j in range(0, 12):
+            if get_date.find(months[j]) != -1:
+                commaIndex = get_date.find(",")
+                m = j + 1
+                d = int(get_date[commaIndex - 2:commaIndex].strip())
+                y = int(get_date[-4:])
+
+                new_date = date(y, m, d)
+                today = date.today()  # getting today
+
+                if new_date <= today:
+                    new_date_format = str(m) + "/" + str(d) + "/" + str(y)  # appending new date format
+
+                    # printing the new date format string
+                    print(new_date_format)
