@@ -8,4 +8,4 @@ This project has 3 parts:
       
    - Part 2 is the mofified program that it reads data from input file.
    
-   - Part 3 is after read data from the input file, it writes out the correct format date into a new output file in format: 3/9/2022. Any date not later        than current date should be ignored. 
+   - Part 3 is after read data from the input file, it writes out the correct format date into a new output file in format: 3/9/2022. Any date later           than current date should be ignored. 
