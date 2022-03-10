@@ -21,5 +21,12 @@ def find(read_date):
 with open("inputDates.txt") as f:
     for j in f.readline():
         if j.strip() != "-1":
-            print(find(j.strip()))
+            res = find(j.strip())
+            if res != "":
+                with open("parsedDates.txt", 'w') as w:
+                    w.write(res)
+                    w.write("\n")
+                    w.close()
+f.close()
+
 
