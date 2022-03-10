@@ -3,41 +3,23 @@
 # This program read a data from input file, parse the dates to find the one in the correct format,
 # and output in m/d/yyyy format.
 
-from datetime import datetime
-from datetime import date
-time_format = "%B %d, %Y"   # initializing format
+def find(read_date):
+    months = {"January": 1, "February": 2,  "March": 3, "April": 4, "May": 5, "June": 6, "July": 7,
+              "August": 8, "September": 9, "October": 10, "November": 11, "December": 12}
 
-# Create the list for months
-months = ['January', 'February', 'March', 'April', 'May', 'June',
-          'July', 'August', 'September', 'October', 'November', 'December']
-
-# create loop until input not equal to -1
-while True:
-    get_date = input()
-    if get_date == "-1":
-        break
-
-# using try-except to check for truth value
     try:
-        # checking if time_format matches the date
-        format_matching = bool(datetime.strptime(get_date, time_format))
+        year = read_date.split(",")[-1].strip()
+        month = read_date.split(",")[0].split()[0]
+        day = read_date.split(",")[0].split()[-1]
+        mm = months[month]
+        int(year)
+        int(day)
+        return str(mm) + "/" + day + "/" + year
     except ValueError:
-        format_matching = False
+        return
 
-    # using find() method to parse the string and extract exact date
-    if format_matching:
-        for j in range(0, 12):
-            if get_date.find(months[j]) != -1:
-                commaIndex = get_date.find(",")
-                m = j + 1
-                d = int(get_date[commaIndex - 2:commaIndex].strip())
-                y = int(get_date[-4:])
+with open("inputDates.txt") as f:
+    for j in f.readline():
+        if j.strip() != "-1":
+            print(find(j.strip()))
 
-                new_date = date(y, m, d)
-                today = date.today()  # getting today
-
-                if new_date <= today:
-                    new_date_format = str(m) + "/" + str(d) + "/" + str(y)  # appending new date format
-
-                    # printing the new date format string
-                    print(new_date_format)
